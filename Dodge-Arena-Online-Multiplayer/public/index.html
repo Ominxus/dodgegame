@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080e22">
+  <meta name="description" content="Dodge Arena — a fair real-time 2-player dodge game with private room codes.">
+  <title>Dodge Arena | Online 2-Player Battle</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<div class="glow glow-a"></div><div class="glow glow-b"></div>
+<div class="shell">
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Dodge Arena home">
+      <span class="brand-mark">✦</span><span>DODGE<span class="brand-light">ARENA</span><small>ONLINE // TWO PLAYERS</small></span>
+    </a>
+    <div class="top-right"><span id="network" class="network"><i></i> Connecting</span><button id="soundToggle" class="icon-button" title="Toggle sounds" aria-label="Toggle sounds">♫ <span id="soundText">OFF</span></button></div>
+  </header>
+  <main>
+    <section id="intro" class="intro-grid">
+      <div class="intro-copy">
+        <div class="eyebrow"><span class="live-dot"></span> PRIVATE 1V1 MULTIPLAYER <span class="sep">/</span> NO DOWNLOADS</div>
+        <h1>DON'T GET <em>HIT.</em><br>DON'T <span>BLINK.</span></h1>
+        <p class="intro-lead">Two players. Identical arenas. One winner. Dodge the falling chaos, collect gems and time your shield to survive longer than your favorite rival.</p>
+        <div class="feature-strip"><span>✦ 3 ROUNDS</span><span>◉ LIVE OPPONENT</span><span>⚡ SHIELD BURST</span></div>
+        <div class="preview" aria-hidden="true">
+          <div class="preview-top"><span>SIMULATION // A-01</span><span class="preview-ready">● ARENA ONLINE</span></div>
+          <div class="preview-field">
+            <span class="preview-orb orb-one"></span><span class="preview-orb orb-two"></span><span class="preview-orb orb-three"></span>
+            <span class="preview-gem">◆</span><span class="preview-ship"><span>▲</span></span><span class="preview-cross">✕</span>
+          </div>
+          <div class="preview-bottom"><span><b>01</b> / 03</span><span class="preview-bar"><i></i></span><span>GET READY</span></div>
+        </div>
+      </div>
+      <div class="entry-card">
+        <div class="entry-heading"><span class="step-label">// PLAYER ACCESS</span><span class="entry-badge">2 SLOTS ONLY</span></div>
+        <h2>ENTER THE ARENA<span class="accent-dot">.</span></h2>
+        <p>Create a private room or join your partner with a six-character code.</p>
+        <label for="playerName" class="field-label">YOUR CALLSIGN</label>
+        <input id="playerName" class="field" maxlength="18" autocomplete="nickname" placeholder="Your name" aria-label="Your player name">
+        <button id="createBtn" class="primary-btn">CREATE PRIVATE ROOM <span>↗</span></button>
+        <div class="or-divider"><span></span>OR JOIN A FRIEND<span></span></div>
+        <label for="roomInput" class="field-label">ROOM CODE</label>
+        <div class="join-row"><input id="roomInput" maxlength="6" spellcheck="false" class="field code-field" placeholder="ABC123" aria-label="Six-character room code"><button id="joinBtn" class="secondary-btn">JOIN <span>→</span></button></div>
+        <p class="privacy-note">🔒 Private invite codes · Runs in your browser · No account required</p>
+      </div>
+    </section>
+
+    <section id="roomScreen" hidden>
+      <div class="section-header"><div><span class="step-label">// MATCH SETUP</span><h1 class="screen-title">YOUR <em>ARENA.</em></h1><p class="subline">One of you creates a room. The other joins with the code below.</p></div><div class="code-box"><span>ROOM CODE</span><div><strong id="roomCode">------</strong><button id="copyCode" class="small-button" title="Copy room code">⧉ COPY</button></div></div></div>
+      <div class="lobby-grid">
+        <div class="lobby-main">
+          <div class="players-grid">
+            <div class="player-card blue-card"><div class="player-title"><span class="player-icon">✦</span><span>PLAYER ONE <small>BLUE</small></span></div><strong id="p1Name">Waiting...</strong><span id="p1Status" class="pill">WAITING</span></div>
+            <div class="center-vs">VS</div>
+            <div class="player-card pink-card"><div class="player-title"><span class="player-icon">✦</span><span>PLAYER TWO <small>PINK</small></span></div><strong id="p2Name">Waiting...</strong><span id="p2Status" class="pill">WAITING</span></div>
+          </div>
+          <div class="panel"><div class="panel-head"><span class="step-label">// SELECT DIFFICULTY</span><span class="micro-copy">HOST SELECTS</span></div><div class="mode-grid" id="modeSelect"><button class="mode-option" data-mode="chill"><span>◌ CHILL</span><small>44 sec · 4 hearts</small></button><button class="mode-option" data-mode="classic"><span>✦ CLASSIC</span><small>53 sec · 3 hearts</small></button><button class="mode-option" data-mode="chaos"><span>⚡ CHAOS</span><small>62 sec · 2 hearts</small></button></div></div>
+          <div class="lobby-actions"><button id="readyBtn" class="primary-btn">I'M READY ✓</button><button id="startBtn" class="secondary-btn" disabled>START MATCH →</button></div>
+          <p id="lobbyHint" class="hint">Share your room code and wait for your partner to join.</p>
+        </div>
+        <aside class="rules-card"><span class="step-label">// MISSION BRIEFING</span><h3>HOW TO WIN</h3><div class="rules-item"><span>01</span><p><b>DODGE THE HAZARDS.</b><br>Move left and right to avoid incoming meteors and energy gates.</p></div><div class="rules-item"><span>02</span><p><b>COLLECT BLUE GEMS.</b><br>Riskier routes give more points. Both arenas get the same gems.</p></div><div class="rules-item"><span>03</span><p><b>USE YOUR SHIELD.</b><br>Spacebar protects you for a split second. Time it carefully.</p></div><div class="rules-item"><span>04</span><p><b>WIN THE BEST OF THREE.</b><br>Higher score wins each round. Round wins decide the match.</p></div><div class="fair-note">⚖️ SAME OBSTACLES · SAME SPEED · SAME ABILITIES</div></aside>
+      </div>
+      <div class="invite-bar"><span>PLAYING ON SEPARATE COMPUTERS?</span><button id="copyInvite" class="small-button">⧉ COPY INVITE LINK</button><span class="muted">Send the link to your girlfriend or friend.</span></div>
+    </section>
+
+    <section id="gameScreen" hidden>
+      <div class="game-head"><div><span class="step-label">// LIVE BATTLE</span><h1 class="screen-title">SURVIVE THE <em>STORM.</em></h1></div><div class="game-tools"><span id="roundBadge" class="round-badge">ROUND 1 / 3</span><div class="timer-block"><small>TIME LEFT</small><strong id="clock">00:53</strong></div><button id="shareMid" class="small-button" title="Copy invite code">⧉ <span id="smallCode">------</span></button></div></div>
+      <div class="score-row"><div class="score-player blue-score"><div class="score-name"><span class="dot blue"></span><span id="gameP1Name">Player one</span><small id="gameP1Tag">0 WINS</small></div><strong id="gameP1Score">0000</strong><div id="gameP1Hearts" class="hearts">♥ ♥ ♥</div></div><div class="score-mid">✦ <span>VERSUS</span> ✦</div><div class="score-player pink-score"><div class="score-name"><span class="dot pink"></span><span id="gameP2Name">Player two</span><small id="gameP2Tag">0 WINS</small></div><strong id="gameP2Score">0000</strong><div id="gameP2Hearts" class="hearts">♥ ♥ ♥</div></div></div>
+      <div class="arenas"><div class="arena-card own-arena"><div class="arena-label"><span class="label-light blue-light"></span> YOUR ARENA <small>YOU CONTROL THIS SHIP</small></div><div class="canvas-holder"><canvas id="myCanvas" width="760" height="500" aria-label="Your interactive dodge arena"></canvas><div id="arenaOverlay" class="arena-overlay" hidden><div class="overlay-text" id="overlayText"></div><div class="overlay-small" id="overlaySmall"></div></div></div><div class="arena-footer"><span>← → / A D TO MOVE</span><span>SPACE = SHIELD</span></div></div><div class="arena-card other-arena"><div class="arena-label"><span class="label-light pink-light"></span> OPPONENT LIVE <small>SAME OBSTACLES. DIFFERENT SKILL.</small></div><div class="canvas-holder"><canvas id="rivalCanvas" width="760" height="500" aria-label="Opponent's live arena"></canvas><div id="rivalOverlay" class="rival-overlay" hidden>WAITING FOR OPPONENT</div></div><div class="arena-footer"><span id="rivalStatus">LIVE FEED</span><span>⚖️ MIRRORED CHALLENGE</span></div></div></div>
+      <div class="game-bottom"><div class="shield-box"><button id="shieldButton" class="shield-button" title="Shield ability">⚡ SHIELD <span id="shieldCooldown">READY</span></button><span class="muted">Temporary protection, then cooldown</span></div><div class="mobile-controls"><button id="leftButton" class="move-btn" aria-label="Move left">◀</button><button id="rightButton" class="move-btn" aria-label="Move right">▶</button></div><div class="emotes"><span class="micro-copy">SEND REACTION</span><button data-emote="🔥" aria-label="Fire reaction">🔥</button><button data-emote="💙" aria-label="Heart reaction">💙</button><button data-emote="😱" aria-label="Surprised reaction">😱</button><button data-emote="GG" aria-label="GG reaction">GG</button></div></div>
+      <div id="emoteBubble" class="emote-bubble" hidden></div>
+      <div id="results" class="results" hidden><span class="step-label">// MATCH COMPLETE</span><h2 id="resultHeadline">GG. WELL PLAYED.</h2><p id="resultSubtitle">Three rounds. One champion.</p><div id="resultRows" class="result-rows"></div><div id="resultWinner" class="winner-callout"></div><div class="results-actions"><button id="rematchBtn" class="primary-btn">↻ PLAY AGAIN</button><button id="copyEnd" class="secondary-btn">⧉ COPY ROOM LINK</button></div></div>
+    </section>
+  </main>
+  <footer class="footer"><span>⚡ DODGE ARENA — BUILT FOR TWO</span><span>SYMMETRICAL MAPS · SERVER-VALIDATED SCORES · PRIVATE ROOM CODES</span><span>V1.0</span></footer>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

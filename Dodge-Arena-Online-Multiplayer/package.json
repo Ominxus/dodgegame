@@ -1,0 +1,13 @@
+{
+  "name": "dodge-arena-online",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Two-player real-time browser dodge game with private rooms and server-authoritative arenas",
+  "main": "server/index.js",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test tests/*.test.js"
+  }
+}
